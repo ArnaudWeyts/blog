@@ -40,14 +40,16 @@ cd _site
 git config user.name "Block-Bot"
 git config user.email "bot@weyts.xyz"
 
+# Add new files
+git add .
+
 # If there are no changes to the compiled _site (e.g. this is a README update) then just bail.
-if [ -z `git diff --exit-code` ]; then
+if [ -z `git diff --cached --exit-code` ]; then
     echo "No changes to the output on this push; exiting."
     exit 0
 fi
 
 # Commit the "changes", i.e. the new version.
-git add .
 git commit -m "Deployed to GitHub Pages using Travis-CI: ${SHA}"
 
 # Now that we're all set up, we can push with the token
