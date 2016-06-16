@@ -1,0 +1,12 @@
+sudo: false
+language: ruby
+rvm:
+- 2.2
+branches:
+  only:
+  - master
+script:
+  - ./buildscripts/deploy.sh
+env:
+  global:
+  - secure: xU/E/Uual0ARqXZALTsUpRdTE9lIyUxeflYfcVEDG812iGq7F/PMd4qJnMcoKvu6oJAlRk9pAgzRTliq8CpuXYnuC8viQ3qPyWhnn2j86mNllnByQFYuGPk6v5DBTkeOX8lcA/oEtEnI0ZoXSGrf0d6b92yqm8rWD7iZZgn5maR4AqSmcWpDCn0f/137nGosMOdr0VU0lRNeb19FkhaCCJqaBBV80ZdAo8f8PnDhSSM+rYQUDEfJtIdA3sq3MqJszO0n6NNKR5VisHPpHNuVUN1RBdg9vSp31QhopWa+1Xt/MHZfXe7v6rAJiH9b/UuXDteWceTLgFJb3BWjf1aNNjRT6NCuVy+xj2qgXVHexnugg17X6Pjfb4zYcN+CWSTZDjACy3O7RdfcTNDtkvz2I8cul5qUBxquXuHEVR+PZ0Ric1CE35LAk3WWXu7St1672AgWXdRiin3Okrjibum777zGlEj9RPU2JxTrTsOjmKSNiQJJ1JpdJBc6qGE29lDTH6NUFAP6HyUleQ9xs8wWbbNCnXkHXFc0bH0yAP2sGSFglgGSh8OMHIO6mGdumcwux8H86WlnhVy6XsvZxlXn360pOVimJQsRVyRfhXv3kZzv2FUeHesR4Oi7fAtktjOoctzywBzeX2KCqGgXc1MxeIr6IVayY/M28SqEqWHkX2I=
