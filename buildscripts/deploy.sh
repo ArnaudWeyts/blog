@@ -7,7 +7,7 @@ TARGET_BRANCH="gh-pages"
 GH_REF="github.com/ArnaudWeyts/blog"
 
 function doCompile {
-  bundle exec jekyll build
+  jekyll build
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
