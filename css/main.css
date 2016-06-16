@@ -125,6 +125,9 @@ pre {
       padding-right: 15px;
       padding-left: 15px; } }
 
+.text-center {
+  text-align: center; }
+
 /**
  * Clearfix
  */
@@ -144,13 +147,57 @@ pre {
   .icon > svg path {
     fill: #828282; }
 
+.icon--github-white > svg path {
+  fill: #fff; }
+
+/**
+ * Buttons
+ */
+.btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0.3rem;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+  .btn:visited {
+    color: rgba(255, 255, 255, 0.7); }
+  .btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3); }
+  .btn + .btn {
+    margin-left: 1rem; }
+  @media screen and (min-width: 64em) {
+    .btn {
+      padding: 0.75rem 1rem; } }
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    .btn {
+      padding: 0.6rem 0.9rem;
+      font-size: 0.9rem; } }
+  @media screen and (max-width: 42em) {
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 0.9rem; }
+      .btn + .btn {
+        margin-top: 1rem;
+        margin-left: 0; } }
+
 /**
  * Site header
  */
+.site-header.page-home {
+  padding: 3rem 4rem; }
+
 .site-header {
-  border-top: 5px solid #424242;
-  border-bottom: 1px solid #e8e8e8;
-  min-height: 56px;
+  background-color: #FBC02D;
+  background-image: linear-gradient(120deg, #2196F3, #FBC02D);
   position: relative; }
 
 .site-title {
@@ -158,10 +205,9 @@ pre {
   font-weight: 300;
   line-height: 56px;
   letter-spacing: -1px;
-  margin-bottom: 0;
-  float: left; }
+  margin-bottom: 0; }
   .site-title, .site-title:visited {
-    color: #424242; }
+    color: #fff; }
 
 .site-nav {
   float: right;
