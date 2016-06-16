@@ -36,11 +36,11 @@ cd ..
 doCompile
 
 # Now let's go have some fun with the cloned repo
-cd out
+cd _site
 git config user.name "Block-Bot"
 git config user.email "bot@weyts.xyz"
 
-# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
+# If there are no changes to the compiled _site (e.g. this is a README update) then just bail.
 if [ -z `git diff --exit-code` ]; then
     echo "No changes to the output on this push; exiting."
     exit 0
