@@ -17,6 +17,8 @@ github_username:  ArnaudWeyts
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
 
 # Exclude
 exclude: ["/buildscripts", "Gemfile", "Gemfile.lock"]

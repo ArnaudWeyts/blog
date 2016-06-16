@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Making a new theme
-date: 2016-06-16 13:30:00 +0200
+date: 2016-06-16 13:20:00 +0200
 categories: jekyll theme
 comments: true
 
