@@ -17,9 +17,9 @@
 .site-title {
     font-size: 26px;
     font-weight: 300;
-    line-height: 56px;
     letter-spacing: -1px;
-    margin-bottom: 0;
+    display: block;
+    padding: 1rem;
 
     &,
     &:visited {
