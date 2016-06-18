@@ -3,8 +3,6 @@ layout: post
 title: Building a Jekyll site using Travis
 date: 2016-06-16 13:30:00 +0200
 categories: jekyll theme
-comments: true
-published: false
 
 ---
 
@@ -78,7 +76,15 @@ and navigating to localhost:4000 in your browser.
 
 The `_config.yml` file is the heart of your Jekyll installation, check out [this](https://jekyllrb.com/docs/configuration/) to configure it to your needs. The generated site is available in the `_site` directory. This is what's being served to your localhost:4000.
 
+# Setting up Travis-CI
+Log in to your GitHub account on the Travis website & add your repository. Travis provides free workers for public GitHub repositories.
+
+
 # The deploy script
 To deploy the `_site` directory to the gh-pages branch, we'll have to make use of a deploy script.
+
+## This blogpost is a work in progress, I just wanted to publish it already because I can.
+
+## To be continued...
 
 
