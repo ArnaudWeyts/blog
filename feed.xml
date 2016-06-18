@@ -6,9 +6,103 @@
 </description>
     <link>https://weyts.xyz/blog/</link>
     <atom:link href="https://weyts.xyz/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Jun 2016 20:05:10 +0000</pubDate>
-    <lastBuildDate>Thu, 16 Jun 2016 20:05:10 +0000</lastBuildDate>
+    <pubDate>Sat, 18 Jun 2016 17:22:05 +0000</pubDate>
+    <lastBuildDate>Sat, 18 Jun 2016 17:22:05 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Building a Jekyll site using Travis</title>
+        <description>&lt;p&gt;This website is hosted on GitHub Pages, using a custom domain, CloudFlare for HTTPS, Jekyll and Travis-CI to build the website.
+I use a pretty simple script that builds the Jekyll site and pushes the _site directory to the gh-pages branch.
+This is done by my lovely &lt;a href=&quot;https://github.com/Block-Bot&quot;&gt;Block-Bot&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First of all, if you’re completely new to GitHub Pages, you’ll have to set up a repository.
+You can find information about that right &lt;a href=&quot;https://pages.github.com&quot;&gt;here&lt;/a&gt;.
+Go for a project site, and select start from scratch.
+If you don’t have a custom domain set up, your website will be hosted at &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.github.io/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;projectname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;.
+For more information on setting up a custom domain, check out &lt;a href=&quot;https://help.github.com/articles/using-a-custom-domain-with-github-pages/&quot;&gt;this&lt;/a&gt; link.&lt;/p&gt;
+
+&lt;h1 id=&quot;setting-up-your-repository&quot;&gt;Setting up your repository&lt;/h1&gt;
+&lt;p&gt;You’ll have to clone your repository first to get started.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;repository url&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That’s it, you won’t need to do any other git operations, the deploy script we’re gonna write in a bit will take care of the necessary branching.&lt;/p&gt;
+
+&lt;h1 id=&quot;installing-and-initializing-jekyll&quot;&gt;Installing and initializing Jekyll&lt;/h1&gt;
+&lt;p&gt;Jekyll is a Ruby gem, so you’ll have to &lt;a href=&quot;https://www.ruby-lang.org/en/documentation/installation/&quot;&gt;install Ruby&lt;/a&gt; first.
+Once Ruby is installed you can simply run:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# you might have to sudo this operation&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem install jekyll
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;repository&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;jekyll new . --force
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This installs Jekyll and turns your repository into a Jekyll environment.
+Once the command finishes, your directory structure should look something like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── README.md
+├── _config.yml
+├── _includes
+│   ├── footer.html
+│   ├── head.html
+│   ├── header.html
+│   ├── icon-github.html
+│   └── ...
+├── _layouts
+│   ├── default.html
+│   ├── page.html
+│   └── post.html
+├── _posts
+│   └── 2016-06-16-first-time-trying-out-jekyll.md
+├── _sass
+│   ├── _base.scss
+│   ├── _layout.scss
+│   └── _syntax-highlighting.scss
+├── about.md
+├── css
+│   └── main.scss
+├── feed.xml
+└── index.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Jekyll initialized a default blog with the default theme, and you can already check it out by running:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and navigating to localhost:4000 in your browser.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file is the heart of your Jekyll installation, check out &lt;a href=&quot;https://jekyllrb.com/docs/configuration/&quot;&gt;this&lt;/a&gt; to configure it to your needs. The generated site is available in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory. This is what’s being served to your localhost:4000.&lt;/p&gt;
+
+&lt;h1 id=&quot;setting-up-travis-ci&quot;&gt;Setting up Travis-CI&lt;/h1&gt;
+&lt;p&gt;Log in to your GitHub account on the Travis website &amp;amp; add your repository. Travis provides free workers for public GitHub repositories.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-deploy-script&quot;&gt;The deploy script&lt;/h1&gt;
+&lt;p&gt;To deploy the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory to the gh-pages branch, we’ll have to make use of a deploy script.&lt;/p&gt;
+
+&lt;h2 id=&quot;this-blogpost-is-a-work-in-progress-i-just-wanted-to-publish-it-already-because-i-can&quot;&gt;This blogpost is a work in progress, I just wanted to publish it already because I can.&lt;/h2&gt;
+
+&lt;h2 id=&quot;to-be-continued&quot;&gt;To be continued…&lt;/h2&gt;
+
+</description>
+        <pubDate>Thu, 16 Jun 2016 11:30:00 +0000</pubDate>
+        <link>https://weyts.xyz/blog/jekyll/theme/2016/06/16/building-a-jekyll-site-using-travis.html</link>
+        <guid isPermaLink="true">https://weyts.xyz/blog/jekyll/theme/2016/06/16/building-a-jekyll-site-using-travis.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>theme</category>
+        
+      </item>
     
       <item>
         <title>Making a new theme</title>
