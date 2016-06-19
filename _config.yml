@@ -10,8 +10,8 @@ title: Blog &middot; Arnaud Weyts
 email: arnaud@weyts.xyz
 description: > # this means to ignore newlines until "baseurl:"
   This is a simple blog using Jekyll.
-baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "https://weyts.xyz" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://blog.weyts.xyz" # the base hostname & protocol for your site
 twitter_username: ArnaudWeyts
 github_username:  ArnaudWeyts
 
