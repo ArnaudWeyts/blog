@@ -36,8 +36,7 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-# commented out because jekyll build cleans up the directory itself
-# rm -rf _site/**/* || exit 0
+rm -rf $DIRECTORY/**/* || exit 0
 
 # Run our compile script
 doCompile
