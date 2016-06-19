@@ -56,7 +56,7 @@ if [[ -z `git diff --cached --exit-code` ]]; then
 fi
 
 # Commit the "changes", i.e. the new version.
-git commit -m "Deployed to GitHub Pages using Travis-CI: ${SHA}"
+git commit -a -m "Deployed to GitHub Pages using Travis-CI: ${SHA}"
 
 # Now that we're all set up, we can push with the token
 git push -f "https://${GH_TOKEN}@${GH_REF}" ${TARGET_BRANCH} > /dev/null 2>&1
