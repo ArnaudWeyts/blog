@@ -4,10 +4,10 @@
     <title>Blog &amp;middot; Arnaud Weyts</title>
     <description>This is a simple blog using Jekyll.
 </description>
-    <link>https://weyts.xyz/blog/</link>
-    <atom:link href="https://weyts.xyz/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 19 Jun 2016 10:00:10 +0000</pubDate>
-    <lastBuildDate>Sun, 19 Jun 2016 10:00:10 +0000</lastBuildDate>
+    <link>https://blog.weyts.xyz/</link>
+    <atom:link href="https://blog.weyts.xyz/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 19 Jun 2016 10:09:07 +0000</pubDate>
+    <lastBuildDate>Sun, 19 Jun 2016 10:09:07 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -94,8 +94,8 @@ Once the command finishes, your directory structure should look something like t
 
 </description>
         <pubDate>Thu, 16 Jun 2016 11:30:00 +0000</pubDate>
-        <link>https://weyts.xyz/blog/jekyll/theme/2016/06/16/building-a-jekyll-site-using-travis.html</link>
-        <guid isPermaLink="true">https://weyts.xyz/blog/jekyll/theme/2016/06/16/building-a-jekyll-site-using-travis.html</guid>
+        <link>https://blog.weyts.xyz/jekyll/theme/2016/06/16/building-a-jekyll-site-using-travis.html</link>
+        <guid isPermaLink="true">https://blog.weyts.xyz/jekyll/theme/2016/06/16/building-a-jekyll-site-using-travis.html</guid>
         
         
         <category>jekyll</category>
@@ -111,8 +111,8 @@ I’ll be trying to implement my own theme by rewriting the default layouts and 
 I’m probably gonna try to make something like the &lt;a href=&quot;https://jasonlong.github.io/cayman-theme/&quot;&gt;Cayman theme&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Thu, 16 Jun 2016 11:20:00 +0000</pubDate>
-        <link>https://weyts.xyz/blog/jekyll/theme/2016/06/16/first-time-trying-out-jekyll.html</link>
-        <guid isPermaLink="true">https://weyts.xyz/blog/jekyll/theme/2016/06/16/first-time-trying-out-jekyll.html</guid>
+        <link>https://blog.weyts.xyz/jekyll/theme/2016/06/16/first-time-trying-out-jekyll.html</link>
+        <guid isPermaLink="true">https://blog.weyts.xyz/jekyll/theme/2016/06/16/first-time-trying-out-jekyll.html</guid>
         
         
         <category>jekyll</category>
