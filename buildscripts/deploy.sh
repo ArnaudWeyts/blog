@@ -1,11 +1,18 @@
 #!/bin/bash -e
 # deploy script for a jekyll blog
 # heavily based on: https://gist.github.com/domenic/ec8b0fc8ab45f39403dd
+# this script pushes a post-build directory to a different branch, this is useful for deploying
+# to a gh-pages branch
 
+# set your build information here, the script will take care of anything else
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
+DIRECTORY="_site"
 GH_REF="github.com/ArnaudWeyts/blog"
+GH_USERNAME="Block-Bot"
+GH_USERMAIL="bot@weyts.xyz"
 
+# set your build commands here
 function doCompile {
   jekyll build
 }
@@ -23,8 +30,8 @@ SHA=`git rev-parse --verify HEAD`
 
 # Clone the existing gh-pages for this repo into _site/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
-git clone $REPO _site
-cd _site
+git clone $REPO $DIRECTORY
+cd $DIRECTORY
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
@@ -36,9 +43,9 @@ cd ..
 doCompile
 
 # Now let's go have some fun with the cloned repo
-cd _site
-git config user.name "Block-Bot"
-git config user.email "bot@weyts.xyz"
+cd $DIRECTORY
+git config user.name $GH_USERNAME
+git config user.email $GH_USERMAIL
 
 # Add new files
 git add .
