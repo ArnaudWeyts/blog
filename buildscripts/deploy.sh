@@ -15,6 +15,8 @@ GH_USERMAIL="bot@weyts.xyz"
 # set your build commands here
 function doCompile {
   jekyll build
+  # this is a CNAME record for the subdomain
+  echo "blog.weyts.xyz" > CNAME
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
