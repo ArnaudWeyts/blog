@@ -21,4 +21,4 @@ kramdown:
   input: GFM
 
 # Exclude
-exclude: ["/buildscripts", "Gemfile", "Gemfile.lock"]
+exclude: ["/buildscripts", "Gemfile", "Gemfile.lock", "README.md"]
