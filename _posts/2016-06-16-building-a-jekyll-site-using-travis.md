@@ -2,7 +2,7 @@
 layout: post
 title: Building a Jekyll site using Travis
 date: 2016-06-16 13:30:00 +0200
-categories: jekyll theme
+categories: travis jekyll
 
 ---
 
