@@ -6,8 +6,8 @@
 </description>
     <link>https://blog.weyts.xyz/</link>
     <atom:link href="https://blog.weyts.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jun 2016 10:14:10 +0000</pubDate>
-    <lastBuildDate>Tue, 21 Jun 2016 10:14:10 +0000</lastBuildDate>
+    <pubDate>Tue, 21 Jun 2016 15:02:26 +0000</pubDate>
+    <lastBuildDate>Tue, 21 Jun 2016 15:02:26 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -84,17 +84,63 @@ Once the command finishes, your directory structure should look something like t
 
 &lt;h1 id=&quot;setting-up-travis-ci&quot;&gt;Setting up Travis-CI&lt;/h1&gt;
 &lt;p&gt;Log in to your GitHub account on the Travis website &amp;amp; add your repository. Travis provides free workers for public GitHub repositories.
-We can start by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.&lt;/p&gt;
+Let’s start with installing the Travis gem, this isn’t fully necessary, but will be useful later on.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem install travis
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We can continue by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.&lt;/p&gt;
+
+&lt;p&gt;This is the &lt;code class=&quot;highlighter-rouge&quot;&gt;.travis.yml&lt;/code&gt; file i’m using for this blog.&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ruby&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;rvm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2.2&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# this installs jekyll on the worker&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gem install jekyll&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# this runs the custom deploy script&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./buildscripts/deploy.sh&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# this is the GitHub access token, more info below, don&#39;t copy this&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# because the token won&#39;t work.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;secure&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;xU/E/Uual0ARqXZALTsUpRdTE9lIyUxeflYfcVEDG812iGq7F/...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Next we’re gonna have to use a GitHub access token, so that our Travis worker can actually use an account to push to your repository.
-It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.&lt;/p&gt;
+It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
+Click &lt;a href=&quot;https://help.github.com/articles/creating-an-access-token-for-command-line-use/&quot;&gt;this link&lt;/a&gt; to figure out how to generate an access token for an account.&lt;/p&gt;
+
+&lt;p&gt;Once you have your access token, you can encrypt it using Travis, run this command to encrypt the variable and add it to the .travis.yml file.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;travis encrypt &lt;span class=&quot;nv&quot;&gt;GH_TOKEN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;secret_token --add
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h1 id=&quot;the-deploy-script&quot;&gt;The deploy script&lt;/h1&gt;
-&lt;p&gt;To deploy the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory to the gh-pages branch, we’ll have to make use of a deploy script.&lt;/p&gt;
+&lt;p&gt;To deploy the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory to the gh-pages branch, we’ll have to make use of a deploy script.
+I’ve created a more or less universal version.&lt;/p&gt;
 
-&lt;h2 id=&quot;this-blogpost-is-a-work-in-progress-i-just-wanted-to-publish-it-already-because-i-can&quot;&gt;This blogpost is a work in progress, I just wanted to publish it already because I can.&lt;/h2&gt;
+&lt;p&gt;It’s on GitHub right &lt;a href=&quot;https://github.com/ArnaudWeyts/blog/blob/master/buildscripts/deploy.sh&quot;&gt;here&lt;/a&gt;.
+This script will work for any repository, if you fill in your own variables at the beginning &amp;amp; add the build steps in the &lt;code class=&quot;highlighter-rouge&quot;&gt;doCompile&lt;/code&gt; function.
+For a Jekyll blog, the function is simply:&lt;/p&gt;
 
-&lt;h2 id=&quot;to-be-continued&quot;&gt;To be continued…&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;doCompile &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    jekyll build
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;thats-it&quot;&gt;That’s it!&lt;/h1&gt;
+&lt;p&gt;You just made your own Jekyll blog using Travis, anytime you push to the master branch, Travis will take care of everything and publish your changes online. Happy blogging!&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 16 Jun 2016 11:30:00 +0000</pubDate>

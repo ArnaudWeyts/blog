@@ -111,17 +111,63 @@ Once the command finishes, your directory structure should look something like t
 
 <h1 id="setting-up-travis-ci">Setting up Travis-CI</h1>
 <p>Log in to your GitHub account on the Travis website &amp; add your repository. Travis provides free workers for public GitHub repositories.
-We can start by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.</p>
+Let’s start with installing the Travis gem, this isn’t fully necessary, but will be useful later on.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install travis
+</code></pre>
+</div>
+
+<p>We can continue by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.</p>
+
+<p>This is the <code class="highlighter-rouge">.travis.yml</code> file i’m using for this blog.</p>
+
+<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="s">sudo</span><span class="pi">:</span> <span class="s">false</span>
+<span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="s">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">2.2</span>
+<span class="s">branches</span><span class="pi">:</span>
+  <span class="s">only</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">master</span>
+<span class="c1"># this installs jekyll on the worker</span>
+<span class="s">install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">gem install jekyll</span>
+<span class="c1"># this runs the custom deploy script</span>
+<span class="s">script</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">./buildscripts/deploy.sh</span>
+<span class="c1"># this is the GitHub access token, more info below, don't copy this</span>
+<span class="c1"># because the token won't work.</span>
+<span class="s">env</span><span class="pi">:</span>
+  <span class="s">global</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">secure</span><span class="pi">:</span> <span class="s">xU/E/Uual0ARqXZALTsUpRdTE9lIyUxeflYfcVEDG812iGq7F/...</span>
+</code></pre>
+</div>
 
 <p>Next we’re gonna have to use a GitHub access token, so that our Travis worker can actually use an account to push to your repository.
-It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.</p>
+It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
+Click <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">this link</a> to figure out how to generate an access token for an account.</p>
+
+<p>Once you have your access token, you can encrypt it using Travis, run this command to encrypt the variable and add it to the .travis.yml file.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>travis encrypt <span class="nv">GH_TOKEN</span><span class="o">=</span>secret_token --add
+</code></pre>
+</div>
 
 <h1 id="the-deploy-script">The deploy script</h1>
-<p>To deploy the <code class="highlighter-rouge">_site</code> directory to the gh-pages branch, we’ll have to make use of a deploy script.</p>
+<p>To deploy the <code class="highlighter-rouge">_site</code> directory to the gh-pages branch, we’ll have to make use of a deploy script.
+I’ve created a more or less universal version.</p>
 
-<h2 id="this-blogpost-is-a-work-in-progress-i-just-wanted-to-publish-it-already-because-i-can">This blogpost is a work in progress, I just wanted to publish it already because I can.</h2>
+<p>It’s on GitHub right <a href="https://github.com/ArnaudWeyts/blog/blob/master/buildscripts/deploy.sh">here</a>.
+This script will work for any repository, if you fill in your own variables at the beginning &amp; add the build steps in the <code class="highlighter-rouge">doCompile</code> function.
+For a Jekyll blog, the function is simply:</p>
 
-<h2 id="to-be-continued">To be continued…</h2>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="k">function </span>doCompile <span class="o">{</span>
+    jekyll build
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h1 id="thats-it">That’s it!</h1>
+<p>You just made your own Jekyll blog using Travis, anytime you push to the master branch, Travis will take care of everything and publish your changes online. Happy blogging!</p>
 
 
   </div>
