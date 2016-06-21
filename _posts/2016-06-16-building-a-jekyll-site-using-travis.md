@@ -78,6 +78,10 @@ The `_config.yml` file is the heart of your Jekyll installation, check out [this
 
 # Setting up Travis-CI
 Log in to your GitHub account on the Travis website & add your repository. Travis provides free workers for public GitHub repositories.
+We can start by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.
+
+Next we're gonna have to use a GitHub access token, so that our Travis worker can actually use an account to push to your repository.
+It's your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
 
 
 # The deploy script
