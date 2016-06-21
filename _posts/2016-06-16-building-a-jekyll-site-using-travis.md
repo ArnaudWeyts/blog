@@ -78,17 +78,62 @@ The `_config.yml` file is the heart of your Jekyll installation, check out [this
 
 # Setting up Travis-CI
 Log in to your GitHub account on the Travis website & add your repository. Travis provides free workers for public GitHub repositories.
-We can start by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.
+Let's start with installing the Travis gem, this isn't fully necessary, but will be useful later on.
+
+```bash
+$ gem install travis
+```
+
+We can continue by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.
+
+This is the `.travis.yml` file i'm using for this blog.
+
+```yml
+sudo: false
+language: ruby
+rvm:
+  - 2.2
+branches:
+  only:
+  - master
+# this installs jekyll on the worker
+install:
+  - gem install jekyll
+# this runs the custom deploy script
+script:
+  - ./buildscripts/deploy.sh
+# this is the GitHub access token, more info below, don't copy this
+# because the token won't work.
+env:
+  global:
+    - secure: xU/E/Uual0ARqXZALTsUpRdTE9lIyUxeflYfcVEDG812iGq7F/...
+```
 
 Next we're gonna have to use a GitHub access token, so that our Travis worker can actually use an account to push to your repository.
 It's your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
+Click [this link](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to figure out how to generate an access token for an account.
 
+Once you have your access token, you can encrypt it using Travis, run this command to encrypt the variable and add it to the .travis.yml file.
+
+```bash
+$ travis encrypt GH_TOKEN=secret_token --add
+```
 
 # The deploy script
 To deploy the `_site` directory to the gh-pages branch, we'll have to make use of a deploy script.
+I've created a more or less universal version.
 
-## This blogpost is a work in progress, I just wanted to publish it already because I can.
+It's on GitHub right [here](https://github.com/ArnaudWeyts/blog/blob/master/buildscripts/deploy.sh).
+This script will work for any repository, if you fill in your own variables at the beginning & add the build steps in the `doCompile` function.
+For a Jekyll blog, the function is simply:
 
-## To be continued...
+```bash
+function doCompile {
+    jekyll build
+}
+```
+
+# That's it!
+You just made your own Jekyll blog using Travis, anytime you push to the master branch, Travis will take care of everything and publish your changes online. Happy blogging!
 
 

@@ -15,7 +15,7 @@ GH_USERMAIL="bot@weyts.xyz"
 # set your build commands here
 function doCompile {
   jekyll build
-  # this is a CNAME record for the subdomain
+  # this is a CNAME record for the subdomain, you might not need this. So comment it out
   echo "blog.weyts.xyz" > _site/CNAME
 }
 
