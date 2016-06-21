@@ -6,24 +6,9 @@
 </description>
     <link>https://blog.weyts.xyz/</link>
     <atom:link href="https://blog.weyts.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jun 2016 10:04:39 +0000</pubDate>
-    <lastBuildDate>Tue, 21 Jun 2016 10:04:39 +0000</lastBuildDate>
+    <pubDate>Tue, 21 Jun 2016 10:14:10 +0000</pubDate>
+    <lastBuildDate>Tue, 21 Jun 2016 10:14:10 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
-    
-      <item>
-        <title>Building a media server using an old pc</title>
-        <description>
-</description>
-        <pubDate>Mon, 20 Jun 2016 20:42:00 +0000</pubDate>
-        <link>https://blog.weyts.xyz/server/linux/2016/06/20/building-a-media-server-using-an-old-pc.html</link>
-        <guid isPermaLink="true">https://blog.weyts.xyz/server/linux/2016/06/20/building-a-media-server-using-an-old-pc.html</guid>
-        
-        
-        <category>server</category>
-        
-        <category>linux</category>
-        
-      </item>
     
       <item>
         <title>Building a Jekyll site using Travis</title>
@@ -98,7 +83,11 @@ Once the command finishes, your directory structure should look something like t
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file is the heart of your Jekyll installation, check out &lt;a href=&quot;https://jekyllrb.com/docs/configuration/&quot;&gt;this&lt;/a&gt; to configure it to your needs. The generated site is available in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory. This is what’s being served to your localhost:4000.&lt;/p&gt;
 
 &lt;h1 id=&quot;setting-up-travis-ci&quot;&gt;Setting up Travis-CI&lt;/h1&gt;
-&lt;p&gt;Log in to your GitHub account on the Travis website &amp;amp; add your repository. Travis provides free workers for public GitHub repositories.&lt;/p&gt;
+&lt;p&gt;Log in to your GitHub account on the Travis website &amp;amp; add your repository. Travis provides free workers for public GitHub repositories.
+We can start by making a Travis file in our repository root, this is used by Travis to determine the scripts and settings for your worker.&lt;/p&gt;
+
+&lt;p&gt;Next we’re gonna have to use a GitHub access token, so that our Travis worker can actually use an account to push to your repository.
+It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.&lt;/p&gt;
 
 &lt;h1 id=&quot;the-deploy-script&quot;&gt;The deploy script&lt;/h1&gt;
 &lt;p&gt;To deploy the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory to the gh-pages branch, we’ll have to make use of a deploy script.&lt;/p&gt;
