@@ -146,6 +146,13 @@ Let’s start with installing the Travis gem, this isn’t fully necessary, but 
 It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
 Click <a href="https://help.github.com/articles/creating-an-access-token-for-command-line-use/">this link</a> to figure out how to generate an access token for an account.</p>
 
+<p>You can also generate one in your repository using the following command:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>curl -u <span class="s1">'username'</span> -d <span class="s1">'{"scopes":["repo"],
+  "note":"push to gh-pages from travis"}'</span> https://api.github.com/authorizations
+</code></pre>
+</div>
+
 <p>Once you have your access token, you can encrypt it using Travis, run this command to encrypt the variable and add it to the .travis.yml file.</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>travis encrypt <span class="nv">GH_TOKEN</span><span class="o">=</span>secret_token --add

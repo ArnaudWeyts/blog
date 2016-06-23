@@ -6,8 +6,8 @@
 </description>
     <link>https://blog.weyts.xyz/</link>
     <atom:link href="https://blog.weyts.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jun 2016 15:02:26 +0000</pubDate>
-    <lastBuildDate>Tue, 21 Jun 2016 15:02:26 +0000</lastBuildDate>
+    <pubDate>Thu, 23 Jun 2016 15:23:01 +0000</pubDate>
+    <lastBuildDate>Thu, 23 Jun 2016 15:23:01 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -118,6 +118,13 @@ Let’s start with installing the Travis gem, this isn’t fully necessary, but 
 &lt;p&gt;Next we’re gonna have to use a GitHub access token, so that our Travis worker can actually use an account to push to your repository.
 It’s your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
 Click &lt;a href=&quot;https://help.github.com/articles/creating-an-access-token-for-command-line-use/&quot;&gt;this link&lt;/a&gt; to figure out how to generate an access token for an account.&lt;/p&gt;
+
+&lt;p&gt;You can also generate one in your repository using the following command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;curl -u &lt;span class=&quot;s1&quot;&gt;&#39;username&#39;&lt;/span&gt; -d &lt;span class=&quot;s1&quot;&gt;&#39;{&quot;scopes&quot;:[&quot;repo&quot;],
+  &quot;note&quot;:&quot;push to gh-pages from travis&quot;}&#39;&lt;/span&gt; https://api.github.com/authorizations
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Once you have your access token, you can encrypt it using Travis, run this command to encrypt the variable and add it to the .travis.yml file.&lt;/p&gt;
 
