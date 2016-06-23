@@ -113,6 +113,13 @@ Next we're gonna have to use a GitHub access token, so that our Travis worker ca
 It's your decision to make, you can use your own account, or you make a new bot account, and give it push access to the repository.
 Click [this link](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) to figure out how to generate an access token for an account.
 
+You can also generate one in your repository using the following command:
+
+```bash
+$ curl -u 'username' -d '{"scopes":["repo"],
+  "note":"push to gh-pages from travis"}' https://api.github.com/authorizations
+```
+
 Once you have your access token, you can encrypt it using Travis, run this command to encrypt the variable and add it to the .travis.yml file.
 
 ```bash
