@@ -18,6 +18,7 @@ I'll go through the steps to make a simple home file server (accessible by Windo
 This simple setup is most likely also possible on a Windows server OS, or any Linux server distribution, but I chose for **Ubuntu Server 16.04 LTS**, it's convenient, and Ubuntu is usually a tad easier to set up than other distributions like Arch Linux. 16.04 got released only months ago, and it's a long term support version, so that will also come in handy.
 
 # Making an installation media
+After you chose your preferred OS, you're gonna have to download the `.iso` file and create a bootable installation media.
 
 # Installing the OS
 
