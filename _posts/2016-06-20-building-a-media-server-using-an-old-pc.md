@@ -1,9 +1,8 @@
 ---
 layout: post
 title: Building a media server using an old pc
-date: 2016-06-20 22:42:00 +0200
+date: 2016-06-28 8:20:00 +0200
 categories: linux mediaserver
-published: false
 
 ---
 
@@ -46,7 +45,7 @@ $ sudo vim /etc/network/interfaces
 
 Using your own network settings, this is what your config file should look like:
 
-```bash
+```
 auto eth0
 iface eth0 inet static
   address 192.168.1.69
@@ -62,10 +61,11 @@ Now we'll restart the network service.
 $ sudo systemctl restart network
 ```
 
-Once that's finished, we'll install all the extra packages we'll be using:
+Once that's finished, we'll install all the extra packages we'll be using. OpenSSH to manage the server remotely, packages for the file server, and transmission. Transmission will be used to host a web interface for torrent downloads.
 
 ```bash
-$ sudo apt-get install openssh-server smbclient cifs-utils ntp ntpdate
+$ sudo apt-get install openssh-server smbclient cifs-utils ntp
+  ntpdate transmission-cli transmission-common transmission-daemon
 ```
 
 Time to create the directories we'll be sharing on the network, you're basically free to put these wherever, but I would recommend creating something like `/var/files` and having a some subdirectories in there, that's what i'll be doing.
@@ -73,7 +73,83 @@ Time to create the directories we'll be sharing on the network, you're basically
 ```bash
 $ sudo mkdir /var/files
 $ sudo mkdir /var/files/public
-$ sudo chmod 777 /var/files/public
+$ sudo mkdir /var/files/torrents
+$ sudo chmod -R 775 /var/files/public
+$ sudo chmod -R 775 /var/files/torrents
 # optional sticky bit, so a user can't delete other files
 $ sudo chmod -t /var/files/public
+$ sudo chmod -t /var/files/torrents
 ```
+
+Now comes the most important part, editing the samba configuration to match your setup.
+I recommend you read through the entire configuration file, as every single setting is explained in detail.
+Here are some of the most important settings:
+
+```bash
+# set your workgroup, this is important for windows,
+# the client will need to be in this workgroup
+workgroup = EXAMPLENAME
+# set windows support
+wins support = yes
+# uncomment this line
+name reslove order = lmhosts hosts wins bcast
+# uncomment this line
+security = user
+
+# add this to the end of the file for your own directories
+[Public Files]
+  comment = Public Files
+  path = /var/files/public
+  browseable = yes
+  readonly = no
+[Torrents]
+  comment = Torrents
+  path = /var/files/torrents
+  browseable = yes
+  readonly = no
+```
+
+Let's set a samba password, for security reasons.
+
+```bash
+$ sudo smbpasswd -a username
+```
+
+Now let's setup our transmission daemon, we'll start by adding our user to the transmission group and setting the permissions right.
+
+```bash
+$ sudo usermod -a -G debian-transmission username
+$ sudo chgrp -R debian-transmission /var/files/torrents
+```
+
+Next we'll edit the config file:
+
+```bash
+$ sudo vim /var/lib/transmission-daemon/info/settings.json
+```
+
+Now in the config file set the `"umask": 2` instead of the default 18.
+I also recommend changing the transmission user password: `"rpc-password": examplepassword`.
+You can find more information [here](https://help.ubuntu.com/community/TransmissionHowTo#Configure).
+Make sure the transmission-daemon is enabled.
+
+```bash
+$ sudo systemctl enable transmission-daemon
+```
+
+Now that's all done, we're basically ready to reboot our server and load all the new daemons from boot.
+
+```bash
+$ sudo reboot
+```
+
+# All done!
+And that's it, when your server has rebooted, the file server will be up and running, and so will the transmission server.
+You can now upload magnet links or .torrent files via the web interface. Navigate to your server's ip and the default transmission port to check it out: `192.168.1.69:9091`.
+You might be prompted with a login, just login with your own user or the transmission user you set. From here you can configure any extra settings transmission might need, the web interface offers exactly the same settings as the actual Transmission client.
+
+Remember to configure the default download folder to `/var/files/torrents` or whatever folder you like. This can also be done using the `settings.json` file, but the web interface works fine too.
+
+Another thing to remember is to add the windows clients to the correct workgroup we configured previously! More info [here](https://windowsinstructed.com/how-to-change-workgroup-in-windows-10/).
+
+# Questions, feedback or improvements? Drop them down below!
