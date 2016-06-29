@@ -6,8 +6,8 @@
 </description>
     <link>https://blog.weyts.xyz/</link>
     <atom:link href="https://blog.weyts.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 28 Jun 2016 08:21:24 +0000</pubDate>
-    <lastBuildDate>Tue, 28 Jun 2016 08:21:24 +0000</lastBuildDate>
+    <pubDate>Wed, 29 Jun 2016 09:56:05 +0000</pubDate>
+    <lastBuildDate>Wed, 29 Jun 2016 09:56:05 +0000</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -88,7 +88,19 @@ iface eth0 inet static
 &lt;/div&gt;
 
 &lt;p&gt;Now comes the most important part, editing the samba configuration to match your setup.
-I recommend you read through the entire configuration file, as every single setting is explained in detail.
+First let’s make a backup copy of the file, just to be safe:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now you can edit it using your favorite text editor:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo vim /etc/samba/smb.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I recommend you read through the entire configuration file, as every single setting is explained in detail.
 Here are some of the most important settings:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# set your workgroup, this is important for windows,&lt;/span&gt;

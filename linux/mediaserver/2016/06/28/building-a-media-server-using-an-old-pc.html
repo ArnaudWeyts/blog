@@ -115,7 +115,19 @@ iface eth0 inet static
 </div>
 
 <p>Now comes the most important part, editing the samba configuration to match your setup.
-I recommend you read through the entire configuration file, as every single setting is explained in detail.
+First let’s make a backup copy of the file, just to be safe:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
+</code></pre>
+</div>
+
+<p>Now you can edit it using your favorite text editor:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo vim /etc/samba/smb.conf
+</code></pre>
+</div>
+
+<p>I recommend you read through the entire configuration file, as every single setting is explained in detail.
 Here are some of the most important settings:</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># set your workgroup, this is important for windows,</span>
