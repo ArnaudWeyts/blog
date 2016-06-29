@@ -82,6 +82,18 @@ $ sudo chmod -t /var/files/torrents
 ```
 
 Now comes the most important part, editing the samba configuration to match your setup.
+First let's make a backup copy of the file, just to be safe:
+
+```bash
+$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
+```
+
+Now you can edit it using your favorite text editor:
+
+```bash
+$ sudo vim /etc/samba/smb.conf
+```
+
 I recommend you read through the entire configuration file, as every single setting is explained in detail.
 Here are some of the most important settings:
 
