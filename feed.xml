@@ -6,9 +6,9 @@
 </description>
     <link>https://blog.weyts.xyz/</link>
     <atom:link href="https://blog.weyts.xyz/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 29 Jun 2016 09:56:05 +0000</pubDate>
-    <lastBuildDate>Wed, 29 Jun 2016 09:56:05 +0000</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <pubDate>Thu, 08 Sep 2016 09:59:32 +0000</pubDate>
+    <lastBuildDate>Thu, 08 Sep 2016 09:59:32 +0000</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
     
       <item>
         <title>Building a media server using an old pc</title>
@@ -81,7 +81,7 @@ iface eth0 inet static
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo mkdir /var/files/torrents
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo chmod -R 775 /var/files/public
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo chmod -R 775 /var/files/torrents
-&lt;span class=&quot;c&quot;&gt;# optional sticky bit, so a user can&#39;t delete other files&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# optional sticky bit, so a user can't delete other files&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo chmod -t /var/files/public
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo chmod -t /var/files/torrents
 &lt;/code&gt;&lt;/pre&gt;
@@ -109,7 +109,7 @@ workgroup &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; EXAMPLENAME
 &lt;span class=&quot;c&quot;&gt;# set windows support&lt;/span&gt;
 wins support &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; yes
 &lt;span class=&quot;c&quot;&gt;# uncomment this line&lt;/span&gt;
-name reslove order &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; lmhosts hosts wins bcast
+name resolve order &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; lmhosts hosts wins bcast
 &lt;span class=&quot;c&quot;&gt;# uncomment this line&lt;/span&gt;
 security &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; user
 
@@ -280,8 +280,8 @@ Let’s start with installing the Travis gem, this isn’t fully necessary, but 
 &lt;span class=&quot;c1&quot;&gt;# this runs the custom deploy script&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./buildscripts/deploy.sh&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# this is the GitHub access token, more info below, don&#39;t copy this&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# because the token won&#39;t work.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# this is the GitHub access token, more info below, don't copy this&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# because the token won't work.&lt;/span&gt;
 &lt;span class=&quot;s&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;s&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;secure&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;xU/E/Uual0ARqXZALTsUpRdTE9lIyUxeflYfcVEDG812iGq7F/...&lt;/span&gt;
@@ -294,8 +294,8 @@ Click &lt;a href=&quot;https://help.github.com/articles/creating-an-access-token
 
 &lt;p&gt;You can also generate one in your repository using the following command:&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;curl -u &lt;span class=&quot;s1&quot;&gt;&#39;username&#39;&lt;/span&gt; -d &lt;span class=&quot;s1&quot;&gt;&#39;{&quot;scopes&quot;:[&quot;repo&quot;],
-  &quot;note&quot;:&quot;push to gh-pages from travis&quot;}&#39;&lt;/span&gt; https://api.github.com/authorizations
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;curl -u &lt;span class=&quot;s1&quot;&gt;'username'&lt;/span&gt; -d &lt;span class=&quot;s1&quot;&gt;'{&quot;scopes&quot;:[&quot;repo&quot;],
+  &quot;note&quot;:&quot;push to gh-pages from travis&quot;}'&lt;/span&gt; https://api.github.com/authorizations
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
