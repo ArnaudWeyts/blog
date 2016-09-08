@@ -104,7 +104,7 @@ workgroup = EXAMPLENAME
 # set windows support
 wins support = yes
 # uncomment this line
-name reslove order = lmhosts hosts wins bcast
+name resolve order = lmhosts hosts wins bcast
 # uncomment this line
 security = user
 
